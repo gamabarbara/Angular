@@ -1,0 +1,32 @@
+html, body { height: 100%; }
+body { 
+    margin: 0; 
+    font-family: Roboto, "Helvetica Neue", sans-serif; 
+    
+}
+
+
+.container {
+    height: calc(100vh - 64px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  
+  .container form {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  a{
+    text-decoration: none;
+  }
+
+  .mat-radio-button ~ .mat-radio-button{
+    margin-left: 16px;
+  }
+
+  section{
+    margin-top: 16px;
+  }
