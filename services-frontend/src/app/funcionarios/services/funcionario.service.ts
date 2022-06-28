@@ -28,4 +28,12 @@ export class FuncionarioService {
     return this.http.get<Funcionario>(`${this.baseUrl}/${id}`)
   }
 
+  salvarFuncionario(func: Funcionario): Observable<Funcionario> {
+    return this.http.post<Funcionario>(this.baseUrl, func)
+  }
+
+  atualizarFuncionario(func: Funcionario): Observable<Funcionario>{
+    return this.http.put<Funcionario>(`${this.baseUrl}/${func.id}`, func)
+  }
+
 }

@@ -34,3 +34,9 @@ table {
 .ativo {
   color: red;
 }
+
+#add{
+  position: fixed;
+  right: 16px;
+  left: 16px;
+}
