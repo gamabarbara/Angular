@@ -49,7 +49,8 @@ export class ListarFuncionariosComponent implements OnInit {
   recuperarFuncionarios(): void {
     this.funcService.getFuncionarios().subscribe(
       (funcs) => { // sucesso
-        this.funcionarios = funcs
+        this.funcionarios = funcs.reverse()
+        //O reverse reverterá o array para que na lista os funcionarios aparecam do mais novo para o mais antigo
       },
       (erro) => { // erro
         console.log(erro)
@@ -61,6 +62,13 @@ export class ListarFuncionariosComponent implements OnInit {
   }
 
   abrirFormFuncionario(): void {
-    this.dialog.open(FormFuncionarioComponent)
+    const referenciaDialog = this.dialog.open(FormFuncionarioComponent) //Abrindo o formulário do funcionário e recuperando a referência desse componente e guardando na variável
+
+    //A função Afterclosed nos retorna um observable, notifica quando o dialog acabou de ser fechado. Quando ele for fechado, chamaremos a funcao que faz a requisição dos funcionários novamente
+    referenciaDialog.afterClosed().subscribe(
+      () => {
+        this.recuperarFuncionarios()
+      }
+    )
   }
 }
