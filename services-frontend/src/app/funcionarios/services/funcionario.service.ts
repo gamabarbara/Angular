@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Funcionario } from '../models/funcionario';
 import { AngularFireStorage } from '@angular/fire/compat/storage' // importação do fireStorage
 
@@ -30,8 +30,24 @@ export class FuncionarioService {
     return this.http.get<Funcionario>(`${this.baseUrl}/${id}`)
   }
 
-  salvarFuncionario(func: Funcionario): Observable<Funcionario> {
+//RXJS operators: funções que manipulam os dados que os observables te retornam
+
+  salvarFuncionario(func: Funcionario, foto: File): Observable<Promise<Observable<Funcionario>>> {
+    //Fazendo requisição POST para salvar os dados do funcionario
+    //@return funcionário que acabou de ser salvo
+    //A função pipe é utilizada para colocar os operadores RXJSque manipularão os dados que são retornados dos observables
+    //O pipe map manipula cada dado que o observable te retorna, transformando em algo diferente e te retorna esse dado modificado
     return this.http.post<Funcionario>(this.baseUrl, func)
+    .pipe(
+      map(async (func) => {
+        // 1° Fazer upload da imagem e recuperar o link gerado
+        const linkFotoFirebase = await this.uploadImagem(foto)
+        // 2° Atribuir o link gerado ao funcionário criado
+        func.foto = linkFotoFirebase
+        //3° Atualizar funcionário com a foto
+        return this.atualizarFuncionario(func)
+      })
+    )
   }
 
   atualizarFuncionario(func: Funcionario): Observable<Funcionario>{
