@@ -1,21 +1,25 @@
-#file-input{
+#file-input {
     display: none;
-}
-
-form{
+  }
+  
+  form {
     display: flex;
     flex-direction: column;
     width: 400px;
     height: 400px;
-
-}
-
-#salvar{
+  }
+  
+  #salvar {
     margin-top: 16px;
-}
-
-img{
-    border-radius: 50px;
-    max-width: 80%;
-    margin: 16px auto;
-}
+  }
+  
+  #image-preview {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: 16px 0;
+    align-self: center;
+    border: 7px solid white;
+    box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2),0px 8px 10px 1px rgba(0, 0, 0, 0.14),0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+  }

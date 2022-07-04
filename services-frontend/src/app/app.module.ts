@@ -9,10 +9,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire/compat/'
 import { environment } from 'src/environments/environment';
-import { AngularFireStorageModule } from '@angular/fire/compat/storage'
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -22,7 +22,7 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage'
     HttpClientModule, 
     ReactiveFormsModule, 
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireStorageModule
+    AngularFireStorageModule, 
   ],
   providers: [],
   bootstrap: [AppComponent]

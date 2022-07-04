@@ -31,12 +31,13 @@ main {
 table {
   height: fit-content;
 }
+
 .ativo {
   color: red;
 }
 
-#add{
+#add {
   position: fixed;
   right: 16px;
-  left: 16px;
+  bottom: 16px;
 }

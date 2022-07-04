@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Funcionario } from '../../models/funcionario';
 import { FuncionarioService } from '../../services/funcionario.service';
 
@@ -22,7 +23,8 @@ export class FormFuncionarioComponent implements OnInit {
   constructor(
     private fb: FormBuilder, 
     private funcService: FuncionarioService,  
-    private dialogRef: MatDialogRef<FormFuncionarioComponent>// Objeto que permite controlar o dialog aberto
+    private dialogRef: MatDialogRef<FormFuncionarioComponent>,// Objeto que permite controlar o dialog aberto
+    private snackbar: MatSnackBar // com esse objeto será criado um snackbar na tela 
   ) { }
 
   ngOnInit(): void {
@@ -53,8 +55,11 @@ salvar(): void {
   dados.then((obs$) => {    
   obs$.subscribe(
       (func) => {
-        console.log(func)
-        alert('Funcionário salvo com sucesso!')
+        //quando o funcionário for salvo, aperecerá um snackbar na tela e o dialog sera fechado.
+        this.snackbar.open("Funcionário salvo com sucesso", 'Ok', {
+          duration: 3000
+        })
+        
         this.dialogRef.close()
       }
     )
